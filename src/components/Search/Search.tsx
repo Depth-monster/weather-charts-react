@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
+interface Props {
+    setCity:(city:string)=>void;
+}
 
+const Search: React.FC<Props> = ({setCity}) => {
 
-const Search = () => {
+    const [value, setValue] = useState<string>('')
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setCity(value);
+        setValue('');
+    };
 
-    return(
-        <form className="search-form">
-            <input type='text' />
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value)
+    }
+
+    return (
+        <form className="search-form" onSubmit={handleSubmit}>
+            <input type='text' value={value} onChange={handleChange} />
             <button>search</button>
-          </form>
+        </form>
     )
 }
 export default Search
