@@ -2,6 +2,7 @@ import Search from './components/Search/Search'
 import WeatherContainer from './components/WeatherContainer/WeatherContainer';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { debug } from 'console';
 
 
 function App() {
@@ -9,13 +10,11 @@ function App() {
 
   let [city, setCity] = useState<string>('ashgabat');
   const API: string = '814a79c17d4df4e9e8b2bcacf2722dc8';
-  //let cityId: number = 4684904; // New York City ID
   let [weatherData, setWeatherData] = useState<any>(null);
   console.log(city)
-  //"id":4684904,
   useEffect(() => {
+    //https://api.openweathermap.org/data/2.5/forecast?q=ashgabat&units=metric&appid=814a79c17d4df4e9e8b2bcacf2722dc8
     axios
-
       .get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API}`)
       .then(response => {
         setWeatherData(response.data);
